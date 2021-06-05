@@ -11,7 +11,8 @@
         Take control of your database structure!
     </div>
     <span class="form-inline align-items-center text-center"  id="DbnameForm"  >
-        <a href="src/DbnameForm.php"><button type="submit" class="btn btn-success mb-2">Get Started!</button></a>
+        <a href="src/DbnameForm.html"><button  class="btn btn-success m-2">Get Started!</button></a>
+        <a href="src/ExistingDbs.php"><button class="btn btn-success m-2 ">See existing Databases!</button></a>
     </span>
 
 
