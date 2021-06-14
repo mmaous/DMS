@@ -1,26 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Name Your DB - DBGenie</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../assets/images/favicon.png" rel="icon" >
     <link href="../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-    <form class="form-inline align-items-center text-center" method="get" id="DbnameForm" action="DbnameBuilder.php" >
-        <div class="form-group mb-2">
+<body class="bg-white">
+    <div id="createDatabaseForm" class="card-header text-center bg-success mb-2 pb-3" style="color: #e4ffe4; font-size: larger">
+        <span class="">Commencer par écrire le nom de la base de données</span>
+        <a href="../index.php">
+            <button class="btn btn-outline-light float-left">Home</button>
+        </a>
+    </div>
+    <form class="form-inline text-white text-center " method="get" id="DbnameForm" action="DbnameBuilder.php" >
+         <fieldset class="m-1 alert alert-dark w-50">
+                <label for="databaseName" class="col-form-label text-dark">Nom de Base De Donneés</label>
+                <input type="text" placeholder="Saisir le nom de database" class=" form-control w-100 datafield" id="databaseName" name="databaseName">
+            </fieldset>
+            <table id="database" class="w-50 p-3 table table-active alert alert-secondary">
+                <thead>
+                <tr>
+                    <th >Nom de champ</th>
+                    <th>type</th>
+                    <th>longeur (max 255)</th>
 
-            <span class="sr-only">What do you want you to name Database? </span>
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="Dbname" class="sr-only">Password</label>
-            <input type="text" class="form-control" id="Dbname" name="dbname" placeholder="Database name .. ">
-        </div>
-        <button type="submit" class="btn btn-success mb-2">Confirm</button>
-    </form>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tfoot>
+                <tr>
+                    <td colspan="4"><button type="button" class="btn btn-primary btn-sm float-sm-start" id="ajouter_ligne">Ajouter une ligne</button></td>
+                </tr>
+                </tfoot>
+
+                <tbody>
+                <tr>
+                    <td><span class="spanField"><input type="text" class="form-control datafield" style="width: 90%" id="col[1]" name="col[1]" placeholder="nom de champ ( ex: nbr_chmbre )"></span></td>
+                    <td><span class="spanField"><select class="form-select  datafield" id="type[1]" name="type[1]"><option value="1">Int</option><option value="2">Text</option><option value="3">Boolean</option></select></span></td>
+                    <td><span class="spanField"><input type="number" class="form-control datafield" id="length[1]" name="length[1]"></span></td>
+                    <td class="actions"><button type="button" class="btn btn-danger btn-sm w-100" disabled>X</button></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="submit" aria-disabled="true">
+                <button type="button" id="modifier" disabled="disabled" hidden>Modifier</button>
+            </div>
+            <button type="submit" id="valider" class="w-50 btn btn-success m-4">Valider</button>
+
+        </form>
 
 
 
 <script src="../assets/js/bootstrap.js"></script>
+<script src="../assets/js/script.js"></script>
 </body>
 </html>

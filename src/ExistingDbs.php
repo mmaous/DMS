@@ -9,16 +9,20 @@
     <link href="../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="bg-white">
 <!--    <form class="form-inline align-items-center text-center" method="get" id="DbnameForm" action="DbnameBuilder.php" >-->
-        <div class="form-group mb-2">
 
-            <span class="sr-only">What do you want you to name Database? </span>
+        <div id="headerTitle" class="card-header text-center bg-success  mt-2 mb-5 pb-3" style="color: #e4ffe4; font-size: larger">
+            <span class="">YOUR DATABASE DATABASES</span>
+            <a href="../index.php">
+                <button class="btn btn-outline-light float-left">Home</button>
+            </a>
         </div>
         <div class="form-group mx-sm-3 mb-2">
 <!--            <label for="Dbname" class="sr-only">Password</label>-->
 <!--            <input type="text" class="form-control" id="Dbname" name="dbname" placeholder="Database name .. ">-->
-            <div class="list-group">
+            <div class="list-group align-items-center">
+                <span class="banner m-4 text-capitalize text-white text-center">Choisir une base de données a manipuler !</span>
                 <ul>
                     <?php
                     require_once './functions.php';
@@ -36,7 +40,6 @@
 
             </div>
         </div>
-        <button type="../index.php" class="btn btn-success mb-2">Home</button>
 
 
 

@@ -1,8 +1,10 @@
 <?php
-$connect = new PDO("mysql:host=127.0.0.1", 'root', 'password');
+require 'functions.php';
+
+$connect = connect();
 
 //$db = mysqli_select_db();
-$dbname = $_GET['dbname'];
+$dbname = $_GET['databaseName'];
 
 $connect->exec("CREATE DATABASE $dbname;");
 echo $dbname;

@@ -6,13 +6,13 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-    <div class="alert header">
-        Take control of your database structure!
+<body class="bg-white">
+    <div class="alert header text-success">
+        Prenez le contrôle de la structure de votre base de données!
     </div>
     <span class="form-inline align-items-center text-center"  id="DbnameForm"  >
-        <a href="src/DbnameForm.html"><button  class="btn btn-success m-2">Get Started!</button></a>
-        <a href="src/ExistingDbs.php"><button class="btn btn-success m-2 ">See existing Databases!</button></a>
+        <a href="src/DbnameForm.html"><button  class="btn btn-success m-2">Créer une base donneés!</button></a>
+        <a href="src/ExistingDbs.php"><button class="btn btn-success m-2 ">Consultez vos bases de données !</button></a>
     </span>
 
 
