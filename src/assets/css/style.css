@@ -1,0 +1,55 @@
+/*body{*/
+/*    background-color: #909f90;*/
+/*}*/
+/*html{*/
+/*    min-width: 1400px;*/
+/*}*/
+body{
+    background-image: url("../images/headphoto_cropped-2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(31, 44, 71, 0.91);
+
+}
+
+body{
+}
+.header{
+    font-size: 2rem;
+    color: #c1efd4;
+    text-align: center;
+    margin-top: 10rem;
+
+}
+
+.banner{
+    display: inline-block;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#DbnameForm{
+    position: absolute;
+    top: 8rem;
+    align-items: center;
+    padding: 2rem 0;
+    justify-content: center;
+    background-color: rgba(3, 80, 111, 0.85);
+
+    width: 100%;
+    height: auto;
+}
+#DbnameForm .btn{
+    background-color: #47597E;
+}
+#headerTitle {
+    background-color: rgba(31, 44, 71, 0.91);
+}
+
+#footer{
+    width: 100%;
+    position: relative;
+    bottom: 1px;
+    background-color: rgba(41, 59, 95, 0.94) !important;
+}
+.alert{
+    opacity: 0.8 !important;
+}

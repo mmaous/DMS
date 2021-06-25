@@ -35,9 +35,11 @@
             var t = document.createElement("input");
 
             t.type = type || "text";
-            t.className = "form-control datafield";
+            t.className = "form-control  w-75 datafield";
             t.name = t.id = name + "[]";
             t.value = value || "";
+            t.required = true;
+
             span.appendChild(t)
             return span;
         }
@@ -47,7 +49,7 @@
             span.className = "spanField";
 
             var s = document.createElement("select");
-            s.className = "form-select datafield";
+            s.className = "form-select  w-75 datafield";
             s.name = s.id = "type[]";
             var option = function(valueAtt, value) {
                 var opt = document.createElement("option");
@@ -55,20 +57,17 @@
                 opt.innerText = value;
                 return opt;
             }
-            s.appendChild(option(1, "Int"));
-            s.appendChild(option(2, "Text"));
-            s.appendChild(option(3, "Boolean"));
+            s.appendChild(option("int", "Int"));
+            s.appendChild(option("text", "Text"));
+            s.appendChild(option("bool", "Boolean"));
             span.appendChild(s);
             return span;
         }
 
-
-
-        // ici on rajoute les cellules (<td>) des différentes rubriques…
         for (i = 0; i < champs.length; i++) {
-            if (champs[i] == 'length') {
-                (ligne.insertCell(i)).appendChild(champ(champs[i], "", "number"));
-            } else if (champs[i] == 'type') {
+            if (champs[i] === 'length') {
+                (ligne.insertCell(i)).appendChild(champ(champs[i], "255", "number"));
+            } else if (champs[i] === 'type') {
                 (ligne.insertCell(i)).appendChild(select());
             } else {
                 (ligne.insertCell(i)).appendChild(champ(champs[i]));
@@ -99,15 +98,11 @@
         var n, nt, inputs, index;
         for (var n = 0, nt = tbody.rows.length; n < nt; n++) {
             inputs = tbody.rows[n].getElementsByClassName('datafield');
-            console.log(inputs);
-
-            // inputs = inputs.children];
 
             index = tbody.rows[n].sectionRowIndex;
 
             for (var nn = 0, ntn = inputs.length; nn < ntn; nn++) {
                 inputs.name = nn;
-                // console.log(inputs.name);
                 inputs[nn].id = inputs[nn].name = inputs[nn].name.replace(/\[\d*\]$/, "[" + index + "]");
 
             }
