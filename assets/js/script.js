@@ -39,17 +39,22 @@
             t.name = t.id = name + "[]";
             t.value = value || "";
             t.required = true;
+            if(t.type === "text"){
+                t.pattern = "^[A-Za-z0-9_]{3,25}$";
+                t.title = "identifiant ordinaire comme par exemple : nbr_chambre_4";
+                t.placeholder = "nom de champ ( ex: nbr_class)";
+            }
 
             span.appendChild(t)
             return span;
         }
 
-        function select(i) {
+        function select() {
             var span = document.createElement("span");
             span.className = "spanField";
 
             var s = document.createElement("select");
-            s.className = "form-select  w-75 datafield";
+            s.className = "form-select custom-select  w-75 datafield";
             s.name = s.id = "type[]";
             var option = function(valueAtt, value) {
                 var opt = document.createElement("option");
@@ -59,7 +64,7 @@
             }
             s.appendChild(option("int", "Int"));
             s.appendChild(option("text", "Text"));
-            s.appendChild(option("bool", "Boolean"));
+            s.appendChild(option("tinyint(1)", "Boolean"));
             span.appendChild(s);
             return span;
         }
@@ -104,11 +109,13 @@
             for (var nn = 0, ntn = inputs.length; nn < ntn; nn++) {
                 inputs.name = nn;
                 inputs[nn].id = inputs[nn].name = inputs[nn].name.replace(/\[\d*\]$/, "[" + index + "]");
-
+                // console.log(document.querySelectorAll("input[type=text].spanField"));
             }
         }
 
     };
 
-
 })();
+
+
+console.log(document.getElementsByName("col[1]"));

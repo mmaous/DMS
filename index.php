@@ -1,10 +1,18 @@
+<?php
+session_start();
+require "src/controller/functions.php";
+//$connect = connectServer();
+//
+////$_SESSION["server_connection"] = $connect;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Welcome - DBGenie</title>
-    <link href="src/assets/images/favicon.png" rel="icon" >
-    <link href="src/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="src/assets/css/style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="assets/images/favicon.png" rel="icon" >
+    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body  id="homepage">
     <div id="headerTitle" class="alert header text-white">
@@ -17,9 +25,8 @@
 
 
 
-
-    <footer class="bg-white" id="footer">
-        <div class="py-2">
+    <footer class="position-fixed  bg-white" id="footer">
+        <div class="p-3">
             <div class="container" align="center">
                 <p class="text-white d-inline m-4 text-left ">Realiser par : MHAND MAOUS</p>
                 <p class="text-white text-center m-4 d-inline">Groupe tp : G4 - SMI6</p>
@@ -29,6 +36,6 @@
     </footer>
 
 
-<script src="src/assets/js/bootstrap.js"></script>
+<script src="assets/js/bootstrap.js"></script>
 </body>
 </html>

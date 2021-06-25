@@ -1,52 +1,59 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <title>Name Your DB - DBGenie</title>-->
-<!--    <link href="../assets/images/favicon.png" rel="icon" >-->
-<!--    <link href="../assets/css/bootstrap.css" rel="stylesheet" type="text/css">-->
-<!--    <link href="../assets/css/style.css" rel="stylesheet" type="text/css">-->
-<!--</head>-->
-<!--<body class="bg-white">-->
-<!--   <form class="form-inline align-items-center text-center" method="get" id="DbnameForm" action="DbnameBuilder.php" >-->
-<!---->
-<!--        <div id="headerTitle" class="card-header text-center mt-2 mb-5 pb-3" >-->
-<!--            <span class="text-white text-lg-center">YOUR DATABASE DATABASES</span>-->
-<!--            <a href="../../index.php">-->
-<!--                <button class="btn btn-outline-light btn-sm float-left">Home</button>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        <div class="form-group mx-sm-3 mb-2">-->
-<!--            <div class="list-group align-items-center">-->
-<!--                <span class="banner m-4 text-capitalize text-white text-center">Choisir une base de données a manipuler !</span>-->
-<!--                <ul>-->
-                        <?php
-                        require_once './functions.php';
+<!DOCTYPE html>
+<html lang="fr" >
+<head>
+    <title>Name Your DB - DBGenie</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="../../assets/images/favicon.png" rel="icon" >
+    <link href="../../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../../assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="bg-white">
 
-                        $connect = connect();
+<div id="headerTitle" class="card-header text-center mt-2 mb-5 pb-3" >
+    <span class="text-white text-lg-center">YOUR DATABASE DATABASES</span>
+    <a href="../../index.php">
+        <button class="btn btn-outline-light btn-sm float-left">Home</button>
+    </a>
+</div>
+   <form class="form-inline align-items-center text-center" method="get" id="DbnameForm" action="../controller/DatabaseSelected.php" >
+        <div class="form-group mx-sm-3 mb-2">
+            <div class="list-group align-items-center">
+                <span class="banner m-4 text-white text-center">Choisissez une base de données à consulter !</span>
+                <ul>
+                        <?php
+                        require '../controller/functions.php';
+
+                        $connect = connectServer();
                         $dbnames = $connect->query("SHOW DATABASES");
 
-
                         $dbs = onlyUsersDb($dbnames);
+                        $connect = null;
 
-                        foreach ($dbs as $d)
-                            echo "<a href=\"../index.php\"><button class=\"btn btn-success m-2 \">$d</button></a>"
+                        foreach ($dbs as $d){
+                            echo "<button class='btn btn-success m-2' name='databasename' value='$d'>$d</button>";
+                        }
+
+                        $dbnames=null;
+                        $dbs=null;
                         ?>
-<!--                </ul>-->
-<!---->
-<!--            </div>-->
-<!--        </div>-->
-<!---->
-<!--<footer class="bg-white" id="footer">-->
-<!--    <div class="py-2">-->
-<!--        <div class="container text-center ">-->
-<!--            <p class="text-white d-inline m-4 text-left ">Realiser par : MHAND MAOUS</p>-->
-<!--            <p class="text-white text-center m-4 d-inline">Groupe tp : G4 - SMI6</p>-->
-<!--            <p class="text-white  text-right m-4 d-inline">CNE : 17-01590008</p>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</footer>-->
-<!---->
-<!---->
-<!--<script src="../assets/js/bootstrap.js"></script>-->
-<!--</body>-->
+
+                </ul>
+
+            </div>
+        </div>
+   </form>
+
+<footer class="position-fixed  bg-white" id="footer">
+    <div class="p-3">
+        <div class="container text-center ">
+            <p class="text-white d-inline m-4 text-left ">Realiser par : MHAND MAOUS</p>
+            <p class="text-white text-center m-4 d-inline">Groupe tp : G4 - SMI6</p>
+            <p class="text-white  text-right m-4 d-inline">CNE : 17-01590008</p>
+        </div>
+    </div>
+</footer>
+
+
+<script src="../../assets/js/bootstrap.js"></script>
+</body>
 </html>
