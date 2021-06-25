@@ -1,3 +1,8 @@
+<?php
+//    if($_GET("databaseName") !== null or ($_POST("databaseName")) !== null ){
+//    header("Location: /");
+//}
+//?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,11 +14,14 @@
 </head>
 <body id="homepage" class="bg-white">
 
-<div id="headerTitle" class="card-header text-center mt-2 mb-5 pb-3">
-    <span class="text-white text-lg-center">YOUR DATABASE DATABASES</span>
+<div id="headerTitle" class="card-header text-center mt-2 mb-2 pb-3">
+    <span class="text-white text-lg-center">YOUR DATABASE TABLES</span>
     <a href="../../index.php">
         <button class="btn btn-outline-light btn-sm float-left">Home</button>
     </a>
+</div>
+<div class="text-center w-100">
+    <a class="btn btn-danger m-3 text-white btn-md" href="../views/ExistingDbs.php" style="background-color: rgba(31,44,71,0.84)">Retour a la listes des bases des données!</a>
 </div>
 <main class="text-white text-center w-75 m-auto p-3" style="background-color: rgba(31, 44, 71, 0.91);">
     <header class="card-header " style="font-size: 2rem">Choisissez table à consulter !</header>
@@ -63,10 +71,11 @@
                                 echo "no field here!";
                             echo "</td>";
 
-                            echo ' <td class="p-2 m-0 text-center btn-group-sm">'.
-                                '<button class="btn btn-outline-info m-2" >Consulter</button>'.
-                                '<button class="btn btn-outline-warning m-2" >Insérer</button>'.
-                                "</td></tr>";
+                            echo ' <td class="p-2 m-0 text-center btn-group-sm"><form action="ShowData.php"><input name="tableName" value="'.$currentTable.'" hidden>'.
+                                '<input name="databaseName" value="'.$databaseSelected.'" hidden><button name="consult" class="btn btn-sm btn-outline-info m-2" >Consulter</button>'.
+                                '<button name="insert" class="btn btn-outline-warning btn-sm m-2" >Insérer</button>'.
+                                '<button name="supprimer" class="btn btn-outline-danger m-2 btn-sm" style="color: #f6baa9; border-color: #f6baa9" >Supprimer</button>'.
+                                "</form></td></tr>";
                         }
                     } else {
                         echo "no table here !";

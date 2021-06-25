@@ -1,6 +1,7 @@
 <?php
 require 'functions.php';
 const home = "/Database-Management-System/src/";
+
 $tableName = cleanString($_GET["tableName"]);
 
 $query = "CREATE OR REPLACE TABLE ".$tableName."(";
@@ -51,7 +52,7 @@ $connect->query($query);
 $connect->close();
 
 if(isset($_GET["finished"]))
-    header("Location: ");
+    header("Location: /Database-Management-System/src/controller/DatabaseSelected.php?databasename=".$dbname);
 elseif(isset($_GET["addAnotherTable"]))
     header("Location: ".home."views/DbForm.php?databasename=".$dbname."&tablename=".$tableName);
 
