@@ -23,7 +23,7 @@
 <div class="text-center w-100">
     <a class="btn btn-danger m-3 text-white btn-md" href="../views/ExistingDbs.php" style="background-color: rgba(31,44,71,0.84)">Retour a la listes des bases des données!</a>
 </div>
-<main class="text-white text-center w-75 m-auto p-3" style="background-color: rgba(31, 44, 71, 0.91);">
+<main class="text-white text-center w-75 m-auto pb-5 p-3" style="background-color: rgba(31, 44, 71, 0.91);">
     <header class="card-header " style="font-size: 2rem">Choisissez table à consulter !</header>
     <div class="text-center">
         <table class="table table-responsive-lg w-100 border-white " >
@@ -37,7 +37,7 @@
             <tbody>
                 <?php
                     require 'functions.php';
-                    $databaseSelected = $_GET["databasename"];
+                    $databaseSelected = $_GET["db"];
 
                     $connect = connectDB($databaseSelected);
 
@@ -45,6 +45,7 @@
 
                     if ($tables->num_rows > 0) {
                         while ($table = $tables->fetch_assoc()) {
+//                            $id = null;
                             $currentTable = $table["Tables_in_" . $databaseSelected];
                             echo "<tr><td>" . $currentTable . "</td>";
                             $fields = $connect->query("desc " . $currentTable);
@@ -54,39 +55,37 @@
                             if ($fields->num_rows > 0){
                                 while ($field = $fields->fetch_assoc()){
                                     $type = $field["Type"];
-                                    if($type === "tinyint(1)")
-                                        echo "<i style='margin: 1rem'>* ".$field["Field"] ." (type = Boolean)</i>";
-                                    else
-                                        echo "<i style='margin: 1rem'>* ".$field["Field"] ." (type = ".$type.")</i>";
-
-
+                                    if($type == "tinyint(1)") {
+//                                        if($fieldName = $field["Field"] == "id")   $id = $field[$fieldName] ;
+                                        echo "<i style='margin: 1rem'>* " . $field["Field"] . " (type = Boolean)</i>";
+                                    }else {
+                                        if($field["Field"] === "id")   $id = $field["Field"];
+                                        echo "<i style='margin: 1rem'>* " . $field["Field"] . " (type = " . $type . ")</i>";
+                                    }
                                     $i++;
-                                        if($i>1){
-                                            $i=0;
-                                            echo "<br><hr>";
-                                        }
+                                    if($i>1){
+                                        $i=0;
+                                        echo "<br><hr>";
+                                    }
 
                                 }
                             }else
                                 echo "no field here!";
                             echo "</td>";
 
-                            echo ' <td class="p-2 m-0 text-center btn-group-sm"><form action="ShowData.php"><input name="tableName" value="'.$currentTable.'" hidden>'.
-                                '<input name="databaseName" value="'.$databaseSelected.'" hidden><button name="consult" class="btn btn-sm btn-outline-info m-2" >Consulter</button>'.
-                                '<button name="insert" class="btn btn-outline-warning btn-sm m-2" >Insérer</button>'.
-                                '<button name="supprimer" class="btn btn-outline-danger m-2 btn-sm" style="color: #f6baa9; border-color: #f6baa9" >Supprimer</button>'.
+                            echo '<td class="p-2 m-0 text-center btn-group-sm"><form method="get" action="ShowData.php">'.
+//                                '<input name="id" value="'.$id.'" hidden>'.
+                                '<input name="table" value="'.$currentTable.'" hidden>'.
+                                '<input name="db"  value="'.$databaseSelected.'" hidden>'.
+                                '<button name="consult"  type="submit"  class="btn btn-sm btn-outline-info m-2" >Consulter</button>'.
+                                '<button name="insert" type="submit" class="btn btn-outline-warning btn-sm m-2" >Insérer</button>'.
+                                '<button name="supprimer" type="submit" class="btn btn-outline-danger m-2 btn-sm" style="color: #f6baa9; border-color: #f6baa9" >Supprimer</button>'.
                                 "</form></td></tr>";
                         }
-                    } else {
-                        echo "no table here !";
-                    }
+                    } else  echo "no table here !";
 
-
-                $connect->close();
+                    $connect->close();
                 ?>
-                <tr>
-
-                </tr>
             </tbody>
         </table>
     </div>

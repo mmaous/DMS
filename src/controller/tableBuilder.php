@@ -1,6 +1,6 @@
 <?php
 require 'functions.php';
-const home = "/Database-Management-System/src/";
+const home = "/DMS/src/";
 
 $tableName = cleanString($_GET["tableName"]);
 
@@ -16,10 +16,12 @@ $length1 = intval(current($lengths)) ;
 $nbrCols = count($types);
 $iter = 0;
 
+$query .= "id int(255)	 PRIMARY KEY AUTO_INCREMENT ";
+
 if ($type1 === 'tinyint(1)'){
-    $insert = "$col1 tinyint(1)";
+    $insert = ", $col1 tinyint(1)";
 }else{
-    $insert = "$col1 $type1($length1)";
+    $insert = ", $col1 $type1($length1)";
 }
 $query .= $insert;
 
@@ -52,9 +54,9 @@ $connect->query($query);
 $connect->close();
 
 if(isset($_GET["finished"]))
-    header("Location: /Database-Management-System/src/controller/DatabaseSelected.php?databasename=".$dbname);
+    header("Location: /DMS/src/controller/DatabaseSelected.php?databasename=".$dbname);
 elseif(isset($_GET["addAnotherTable"]))
     header("Location: ".home."views/DbForm.php?databasename=".$dbname."&tablename=".$tableName);
 
-//
-//
+
+

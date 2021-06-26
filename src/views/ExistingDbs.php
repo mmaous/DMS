@@ -29,8 +29,12 @@
                         $dbs = onlyUsersDb($dbnames);
                         $connect = null;
 
-                        foreach ($dbs as $d){
-                            echo "<button class='btn btn-success m-2' name='databasename' value='$d'>$d</button>";
+                        if (!empty($dbs)) {
+                            foreach ($dbs as $d) {
+                                echo "<button class='btn btn-success m-2' name='db' value='$d'>$d</button>";
+                            }
+                        } else {
+                            echo "<div class='alert w-100 alert-danger text-dark text-center' >pas de base de données ici !<br><a  class='m-2' href='DbCreateForm.html'><button type='button' class='btn bg-info btn-outline-dark'>Créez une nouvelle base de données !</button></a></div>";
                         }
 
                         $dbnames=null;

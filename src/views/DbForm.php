@@ -22,7 +22,7 @@ if (!$_GET["databasename"]) {
 <form class="form-inline text-white text-center DbnameForm " method="get" id="DbnameForm" action="../controller/tableBuilder.php">
     <span class="alert alert-danger text-center m-3 w-75">⚠️ si le nom de table existe déjà il sera remplacé par celui-ci en cas de validité!</span>
     <span class="card-title text-center w-50 alert alert-info"> Le nom de la base de données : <br><strong
-                name="db"><?php echo $_GET["databasename"]; ?></strong></span>
+                name="db"><?php echo "<a href='/DMS/src/controller/DatabaseSelected.php?databasename=".$_GET["databasename"]."'><button type='button' class='w-25 btn btn-dark bg-success border-left-0 border-right-0 m-2' >".$_GET["databasename"]."</button></a>"; ?></strong></span>
     <?php
 
     echo  "<input name='dbname' value=".$_GET["databasename"]. "  hidden>";

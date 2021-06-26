@@ -38,7 +38,7 @@ function connectDB($database): mysqli
 
 function onlyUsersDb(PDOStatement $dbnames)
 {
-    $_adminDb = ['information_schema','mysql','performance_schema','phpmyadmin','stim_db'];
+    $_adminDb = ['information_schema','mysql','performance_schema','phpmyadmin','stim_db']; // ,'php', 'java', 'hotel_farah','hello','test'
     $usersDb = [];
     foreach ($dbnames as $db)
         if (!in_array($db[0], $_adminDb))

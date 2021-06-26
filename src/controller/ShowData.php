@@ -1,6 +1,8 @@
 <?php
+
 if (isset($_GET["insert"])){
-    echo "taaaaaaaaz";
+    header("Location: /DMS/src/views/insertForm.php?db=".$_GET["db"]."&table=".$_GET["table"]);
+    die();
 }elseif(isset($_GET["supprimer"]))
     if((isset($_GET["tableName"]) && isset($_GET["databaseName"]))){
         require 'functions.php';
@@ -9,9 +11,7 @@ if (isset($_GET["insert"])){
         $connect = connectDB($db);
         $delete = $connect->query('DROP TABLE '.$table);
         header("Location: DatabaseSelected.php?databasename=".$db);
-
-    }else header("Location: DatabaseSelected.php");
-
+    }elseif(isset($_GET["consult"])) echo "welcome";
 ?>
 
 <!DOCTYPE html>
@@ -33,25 +33,25 @@ if (isset($_GET["insert"])){
 </div>
                 <?php
                 require 'functions.php';
-                if(!(isset($_GET["tableName"]) && isset($_GET["databaseName"]))){
-                        header("Location: /Database-Management-System");
+                if(!(isset($_GET["table"]) && isset($_GET["db"]))){
+                        header("Location: /DMS");
                     }
 
-                $table = $_GET["tableName"];
+                $table = $_GET["table"];
                 //                    $table = "quiz_student";
-                $db = $_GET["databaseName"];
+                $db = $_GET["db"];
                 //                    $db = "hotel_farah";
                 echo '<div class="text-center w-100">';
-                echo '<a class="btn btn-info m-3 text-white btn-md" href="/Database-Management-System/src/controller/DatabaseSelected.php?databasename='.$db.'" style="background-color: rgba(31,44,71,0.84)">Retour a la listes des tableaux dans '.$db.'!</a>';
+                echo '<a class="btn btn-info m-3 text-white btn-md" href="/DMS/src/controller/DatabaseSelected.php?db='.$db.'" style="background-color: rgba(31,44,71,0.84)">Retour a la listes des tableaux dans '.$db.'!</a>';
                 echo '</div>';
-                echo '<main class="text-white text-center w-100 m-auto p-3" style="background-color: rgba(31, 44, 71, 0.91);">';
+                echo '<main class="text-white text-center w-100 mb-2 p-3" style="background-color: rgba(31, 44, 71, 0.91);">';
 
                 echo "<header class='card-header ' style='font-size: 2rem'>Les données de la table \"$table\" !</header>";
                     echo "<form>";
 
                     echo "</form>";
-                    echo "<div class='text-center'>";
-                    echo " <table class='table table-responsive-lg w-100 border-white'>";
+                    echo "<div class='text-center' style='overflow-wrap: normal; overflow-x: auto'>";
+                    echo " <table class='table w-75  table-sm border-white' ALIGN='CENTER'>";
 
 
 
@@ -60,7 +60,7 @@ if (isset($_GET["insert"])){
                     if(isset($_GET["consult"])) {
 
                         $fields = $connect->query("desc " . $table);
-                        $fieldCount = 0;
+                        $fieldCount = 1;
                         $fieldsArray = [];
                         if (is_object($fields)){
                             if($fields->num_rows > 0) {
@@ -71,37 +71,41 @@ if (isset($_GET["insert"])){
                                     echo "<th style='padding: 1rem'> " . $OneTimefield . "</th>";
                                     array_push($fieldsArray, $OneTimefield);
                                 }
-                                echo "</tr></thead>";
+                                echo "<th>Actions</th></tr></thead>";
                             } else   echo "no fields here!";
                             $data = $connect->query("select * from $table");
 
-                            echo "<tbody style='border:1px solid white;background-color: #2D3851CD'>";
 
                            if(is_object($data)){
                                if ($data->num_rows > 0) {
+                                   echo "<tbody style='border:1px solid white;background-color: #2D3851CD'>";
                                    while ($row = $data->fetch_assoc()) {
                                        echo "<tr>";
+                                       echo ' <td class="p-2 m-0 text-center btn-group-sm"><form action="ShowData.php">';
                                        foreach ($fieldsArray as $fieldName) {
                                            echo "<td align='center'>" . $row[$fieldName] . "</td>";
                                        }
-                                       echo "</tr>";
-                                       //                echo "<br><br>";
-                                   }
-                                   echo "</tbody>";
-                               } else   echo "no data here!";
+                                       echo '<input name="table" value="'.$table.'" hidden>'.
+                                           '<input name="db" value="'.$db.'" hidden>'.
+                                           '<button name="modifier" type="submit" class="btn btn-outline-warning btn-sm" >Modifier</button>'.
+                                           '<button name="supprimer" type="submit" class="btn btn-outline-danger btn-sm" style="color: #f6baa9; border-color: #f6baa9" >Supprimer</button>'.
+                                           "</form></td></tr>";                                   }
+                               } else   echo "<td colspan='$fieldCount'>no data here!</td>";
+                               echo "</tbody>";
+
                            }
                             $connect->close();
                         } else  echo "No data is found within this tables";
 
-                        echo  '<tfooter class="text-center">';
-                        echo '<td>';
+                        echo  "<tfooter >";
+                        echo "<tr><td colspan='$fieldCount'>";
 
                         echo '<form action="../views/insertForm.php">';
-                        echo '<input name="tableName" value="'.$table.'" hidden>';
-                        echo '<input name="databaseName" value="'.$db.'" hidden>';
-                        echo ' <button type="submit" class="btn btn-outline-warning" >Insérer a c tableau</button>';
+                        echo '<input name="table" value="'.$table.'" hidden>';
+                        echo '<input name="db" value="'.$db.'" hidden>';
+                        echo ' <button type="submit" class="btn btn-outline-warning" >Insérer dans ce tableau</button>';
                         echo '</form>';
-                        echo '</tfooter></table></div>';
+                        echo '</td></tr></tfooter></table></div>';
 
                     }
                 ?>
