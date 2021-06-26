@@ -6,12 +6,16 @@
 //}
 require 'functions.php';
 
+
 $db = $_POST["db"];
 $table = $_POST["table"];
 
 $connect = connectDB($db);
 
 $fields = $connect->query("desc ".$table);
+if(isset($_POST["modifiy"], $_POST["id"]))
+     $connect->query("delete from  ".$table." where id = ". $_POST["id"]);
+
 $fieldNames = [];
 
 if ($fields->num_rows > 0)
@@ -44,7 +48,7 @@ $connect->query($query);
 $connect->close();
 
 // DMS/src/controller/ShowData.php?table=courses&db=farah_hotel&consult=
-if(isset($_POST["finished"]))
+if(isset($_POST["finished"]) OR isset($_POST["modifiy"]))
     header("Location: /DMS/src/controller/ShowData.php?table=".$table."&db=".$db."&consult=".$db);
 elseif(isset($_POST["insertAnother"]))
     header("Location: /DMS/src/views/insertForm.php?table=".$table."&db=".$db);

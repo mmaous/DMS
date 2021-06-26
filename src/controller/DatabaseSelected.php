@@ -61,7 +61,7 @@ if (isset($_GET["insert"])){
                     if ($tables->num_rows > 0) {
                         while ($table = $tables->fetch_assoc()) {
 //                            $id = null;
-                            $currentTable = $table["Tables_in_" . $databaseSelected];
+                            $currentTable = $table["Tables_in_" . strtolower($databaseSelected)];
                             echo "<tr><td>" . $currentTable . "</td>";
                             $fields = $connect->query("desc " . $currentTable);
 

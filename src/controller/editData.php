@@ -67,7 +67,8 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"]) ) OR (empty($_GET["db"]) OR em
         while($field = $fields->fetch_assoc()){
             if ($field["Field"] !=="id") {
                 if (strpos($field["Type"], 'tinyint(1)') !== false) {
-                    echo "<select class='form-select custom-select bg-white  w-50 datafield' name=".$field["Field"]."><option value='true'>true</option><option value='false'>false</option> </select>";
+                    echo "<label for='".$field["Field"]."'>".$field["Field"]."</label><br>";
+                    echo "<select class='form-select custom-select bg-white  w-50 datafield' name=".$field["Field"]."><option value='1'>true</option><option value='0'>false</option> </select>";
                 }elseif((strpos($field["Type"], "text") !== false) or (strpos($field["Type"], "varchar") !== false) ){
                     echo "<label for='".$field["Field"]."'>".$field["Field"]."</label>";
                     echo "<input id='".$field["Field"]."' class='form-control datafield w-50' name='".$field["Field"]."' value='".$row[$field["Field"]]."' type='text' required>";
@@ -75,6 +76,7 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"]) ) OR (empty($_GET["db"]) OR em
                     echo "<label for='" . $field["Field"] . "'>" . $field["Field"] . "</label>";
                     echo '<input id="' . $field["Field"] . '" class="form-control datafield w-50" name="' . $field["Field"] . '" value="'.$row[$field["Field"]].'" type="number" required>';
                 }
+                }else echo "<input name='id' type='number' value=".$row["id"]." hidden>";
 //                       ******************************* for date check **********************
 
 //                        }elseif(strpos($field["Type"], "date") !== false){
@@ -82,9 +84,9 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"]) ) OR (empty($_GET["db"]) OR em
 //                            echo "<input id='".$field["Field"]."' class='form-control datafield w-50' name='".$field["Field"]."' type='date' value='2018-07-22' required>";
 //                        }
 //                        ************************************************************
-            }
+
         }
-        echo '<button class="btn btn-outline-info m-4" name="finished" type="submit">Modifier</button>';
+        echo '<br><button class="btn btn-outline-info m-4" name="modifiy" type="submit">Modifier</button>';
     }else echo "no fields to insert into!";
     echo "</main>";
 
