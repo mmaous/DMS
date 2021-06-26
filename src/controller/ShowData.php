@@ -1,16 +1,13 @@
 <?php
 
-if (isset($_GET["insert"])){
-    header("Location: /DMS/src/views/insertForm.php?db=".$_GET["db"]."&table=".$_GET["table"]);
-    die();
-}elseif(isset($_GET["supprimer"]))
-    if((isset($_GET["tableName"]) && isset($_GET["databaseName"]))){
+if(isset($_GET["supprimer"]))
+    if((isset($_GET["table"]) && isset($_GET["db"]))){
         require 'functions.php';
-        $table =$_GET["tableName"];
-        $db = $_GET["databaseName"];
+        $table =$_GET["table"];
+        $db = $_GET["db"];
         $connect = connectDB($db);
-        $delete = $connect->query('DROP TABLE '.$table);
-        header("Location: DatabaseSelected.php?databasename=".$db);
+        $delete = $connect->query('DELETE FROM '.$table." where id=".$_GET["id"]);
+        header("Location: ShowData.php?table=".$table."&db=".$db."&consult=");
     }elseif(isset($_GET["consult"])) echo "welcome";
 ?>
 
@@ -44,9 +41,9 @@ if (isset($_GET["insert"])){
                 echo '<div class="text-center w-100">';
                 echo '<a class="btn btn-info m-3 text-white btn-md" href="/DMS/src/controller/DatabaseSelected.php?db='.$db.'" style="background-color: rgba(31,44,71,0.84)">Retour a la listes des tableaux dans '.$db.'!</a>';
                 echo '</div>';
-                echo '<main class="text-white text-center w-100 mb-2 p-3" style="background-color: rgba(31, 44, 71, 0.91);">';
+                echo '<main class="text-white text-center w-100 mb-5 p-3" style="background-color: rgba(31, 44, 71, 0.91);">';
 
-                echo "<header class='card-header ' style='font-size: 2rem'>Les données de la table \"$table\" !</header>";
+                echo "<header class='card-header ' style='font-size: 2rem'>Les données de la table $table !</header>";
                     echo "<form>";
 
                     echo "</form>";
@@ -72,8 +69,8 @@ if (isset($_GET["insert"])){
                                     array_push($fieldsArray, $OneTimefield);
                                 }
                                 echo "<th>Actions</th></tr></thead>";
-                            } else   echo "no fields here!";
-                            $data = $connect->query("select * from $table");
+                            } else   echo "pas de champs à afficher !";
+                            $data = $connect->query("select * from ".$table);
 
 
                            if(is_object($data)){
@@ -81,13 +78,15 @@ if (isset($_GET["insert"])){
                                    echo "<tbody style='border:1px solid white;background-color: #2D3851CD'>";
                                    while ($row = $data->fetch_assoc()) {
                                        echo "<tr>";
-                                       echo ' <td class="p-2 m-0 text-center btn-group-sm"><form action="ShowData.php">';
                                        foreach ($fieldsArray as $fieldName) {
+                                           if ($fieldName === "id") $id = $row[$fieldName];
                                            echo "<td align='center'>" . $row[$fieldName] . "</td>";
                                        }
+                                       echo ' <td class="p-2 m-0 text-center btn-group-sm"><form action="ShowData.php">';
                                        echo '<input name="table" value="'.$table.'" hidden>'.
                                            '<input name="db" value="'.$db.'" hidden>'.
-                                           '<button name="modifier" type="submit" class="btn btn-outline-warning btn-sm" >Modifier</button>'.
+                                           '<input name="id" value="'.$id.'" hidden>'.
+                                           '<a href="editData.php?table='.$table.'&db='.$db.'&id='.$id.'"><button name="modifier" type="button" class="btn btn-outline-warning btn-sm" >Modifier</button></a>'.
                                            '<button name="supprimer" type="submit" class="btn btn-outline-danger btn-sm" style="color: #f6baa9; border-color: #f6baa9" >Supprimer</button>'.
                                            "</form></td></tr>";                                   }
                                } else   echo "<td colspan='$fieldCount'>no data here!</td>";

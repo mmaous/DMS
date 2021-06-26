@@ -24,7 +24,6 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"])) OR (empty($_GET["db"]) OR emp
 <div class="text-center w-100">
 </div>
 <main class="text-white text-center w-75 m-auto pb-5 p-3" style="background-color: rgba(31, 44, 71, 0.91);">
-    <header class="card-header " style="font-size: 2rem">Inserer les donnes !</header>
 <!--    <div class="text-center">-->
 <!--        <div class=" w-100 border-white " >-->
             <?php
@@ -40,12 +39,8 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"])) OR (empty($_GET["db"]) OR emp
             $db = $_GET["db"];
             //                    $db = "hotel_farah";
             echo '<a class="btn btn-info m-3 text-white btn-md" href="/DMS/src/controller/DatabaseSelected.php?db='.$db.'" style="background-color: rgba(31,44,71,0.84)">Retour a la listes des tableaux dans '.$db.'!</a>';
-            echo '<div class="text-center w-100">';
-            echo '</div>';
-            echo '<main class="text-white text-center w-100 mb-2 p-3" style="background-color: rgba(31, 44, 71, 0.91);">';
+            echo '<header class="card-header " style="font-size: 2rem">Inserer les donnes !</header>';
 
-            echo "<header class='card-header ' style='font-size: 2rem'>Les données de la table \"$table\" !</header>";
-            echo "<div class='text-center' style='overflow-wrap: normal; overflow-x: auto'>";
 
 
             $db = $_GET["db"];
@@ -56,33 +51,39 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"])) OR (empty($_GET["db"]) OR emp
             $fields = $connect->query("desc ".$table);
 
             if ($fields->num_rows > 0){
-                echo '<form action="insertData.php" method="post"><div align="center" class="form-group">';
+                echo '<form action="../controller/insertData.php" method="post">'.
+                        '<input type="text" name="insert" value="true" hidden><input type="text" name="db" value="'.$db.'" hidden><input type="text" name="table" value="'.$table.'" hidden>'.
+                    '<div align="center" class="form-group">';
                 while($field = $fields->fetch_assoc()){
                     if ($field["Field"] !=="id") {
                         if (strpos($field["Type"], 'tinyint(1)') !== false) {
-                            echo "<select class='form-select custom-select bg-white  w-50 datafield' name='typeBool'><option value='true'>true</option><option value='false'>false</option> <br>";
+                            echo "<select class='form-select custom-select bg-white  w-50 datafield' name=".$field["Field"]."><option value='true'>true</option><option value='false'>false</option> </select>";
                         }elseif((strpos($field["Type"], "text") !== false) or (strpos($field["Type"], "varchar") !== false) ){
                             echo "<label for='".$field["Field"]."'>".$field["Field"]."</label>";
                             echo "<input id='".$field["Field"]."' class='form-control datafield w-50' name='".$field["Field"]."' value='NULL' type='text' required>";
-                        }elseif(strpos($field["Type"], "int") !== false){
-                            echo "<label for='".$field["Field"]."'>".$field["Field"]."</label>";
-                            echo "<input id='".$field["Field"]."' class='form-control datafield w-50' name='".$field["Field"]."' value='NULL' type='number' required>";
-                        }elseif(strpos($field["Type"], "date") !== false){
-                            echo "<label for='".$field["Field"]."'>".$field["Field"]."</label>";
-                            echo "<input id='".$field["Field"]."' class='form-control datafield w-50' name='".$field["Field"]."' type='date' value='2018-07-22' required>";
+                        }elseif(strpos($field["Type"], "int") !== false) {
+                            echo "<label for='" . $field["Field"] . "'>" . $field["Field"] . "</label>";
+                            echo '<input id="' . $field["Field"] . '" class="form-control datafield w-50" name="' . $field["Field"] . '" value="NULL" type="number" required>';
                         }
+//                       ******************************* for date check **********************
+
+//                        }elseif(strpos($field["Type"], "date") !== false){
+//                            echo "<label for='".$field["Field"]."'>".$field["Field"]."</label>";
+//                            echo "<input id='".$field["Field"]."' class='form-control datafield w-50' name='".$field["Field"]."' type='date' value='2018-07-22' required>";
+//                        }
+//                        ************************************************************
                     }
                 }
-                echo '<button type="submit">submit</button></form>';
+                echo '<button class="btn btn-outline-info m-4" name="finished" type="submit">Inserer</button>';
+                echo '<button class="btn btn-outline-info m-4" name="insertAnother" type="submit">Inserer + </button></div></form>';
             }else echo "no fields to insert into!";
-
+            echo "</main>";
 
             $connect->close();
            ?>
-    </div>
-    </div></div></div>
-</main>
-<footer class="position-fixed  bg-white" id="footer">
+<!--    </div>-->
+
+<footer class="w-100 wbg-white" id="footer">
     <div class="p-3">
         <div class="container text-center ">
             <p class="text-white d-inline m-4 text-left ">Realiser par : MHAND MAOUS</p>

@@ -2,7 +2,7 @@
 require 'functions.php';
 const home = "/DMS/src/";
 
-$tableName = cleanString($_GET["tableName"]);
+$tableName = cleanString($_GET["table"]);
 
 $query = "CREATE OR REPLACE TABLE ".$tableName."(";
 
@@ -48,15 +48,15 @@ for ($i = 1; $i <= $nbrCols; $i++ )
     }
 }
 echo $query;
-$dbname = $_GET["dbname"];
+$dbname = $_GET["db"];
 $connect = connectDB($dbname);
 $connect->query($query);
 $connect->close();
 
 if(isset($_GET["finished"]))
-    header("Location: /DMS/src/controller/DatabaseSelected.php?databasename=".$dbname);
+    header("Location: /DMS/src/controller/DatabaseSelected.php?db=".$dbname);
 elseif(isset($_GET["addAnotherTable"]))
-    header("Location: ".home."views/DbForm.php?databasename=".$dbname."&tablename=".$tableName);
+    header("Location: ".home."views/DbForm.php?db=".$dbname."&table=".$tableName);
 
 
 

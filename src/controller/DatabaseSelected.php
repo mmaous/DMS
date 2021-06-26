@@ -1,8 +1,23 @@
 <?php
-//    if($_GET("databaseName") !== null or ($_POST("databaseName")) !== null ){
-//    header("Location: /");
-//}
-//?>
+    if(!isset($_GET["db"])){
+    header("Location: /DMS");
+}
+
+
+if (isset($_GET["insert"])){
+    header("Location: /DMS/src/views/insertForm.php?db=".$_GET["db"]."&table=".$_GET["table"]);
+    die();
+}elseif(isset($_GET["supprimer"])){
+    if((isset($_GET["table"]) && isset($_GET["db"]))) {
+        require 'functions.php';
+        $table = $_GET["table"];
+        $db = $_GET["db"];
+        $connect = connectDB($db);
+        $delete = $connect->query('DROP TABLE ' . $table);
+        header("Location: DatabaseSelected.php?db=" . $db);
+    }
+}elseif(isset($_GET["consult"])) echo "welcome";
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,7 +45,7 @@
             <thead>
                 <tr>
                     <th>Nom de Table</th>
-                    <th>Fields</th>
+                    <th>Champs</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -73,16 +88,17 @@
                                 echo "no field here!";
                             echo "</td>";
 
-                            echo '<td class="p-2 m-0 text-center btn-group-sm"><form method="get" action="ShowData.php">'.
+                            echo '<td class="p-2 m-0 text-center btn-group-sm"><form method="get" action="DatabaseSelected.php">'.
 //                                '<input name="id" value="'.$id.'" hidden>'.
                                 '<input name="table" value="'.$currentTable.'" hidden>'.
                                 '<input name="db"  value="'.$databaseSelected.'" hidden>'.
-                                '<button name="consult"  type="submit"  class="btn btn-sm btn-outline-info m-2" >Consulter</button>'.
+                                '<a href="ShowData.php?table='.$currentTable.'&db='.$databaseSelected.'&consult="><button name="consult"  type="button"  class="btn btn-sm btn-outline-info m-2" > Consulter</button></a>'.
                                 '<button name="insert" type="submit" class="btn btn-outline-warning btn-sm m-2" >Insérer</button>'.
                                 '<button name="supprimer" type="submit" class="btn btn-outline-danger m-2 btn-sm" style="color: #f6baa9; border-color: #f6baa9" >Supprimer</button>'.
                                 "</form></td></tr>";
                         }
-                    } else  echo "no table here !";
+
+                    } else  echo "pas de tableau à afficher !";
 
                     $connect->close();
                 ?>

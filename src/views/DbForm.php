@@ -1,5 +1,5 @@
 <?php
-if (!$_GET["databasename"]) {
+if (!$_GET["db"]) {
     header('Location: DbCreateForm.html');
 }
 ?>
@@ -22,10 +22,10 @@ if (!$_GET["databasename"]) {
 <form class="form-inline text-white text-center DbnameForm " method="get" id="DbnameForm" action="../controller/tableBuilder.php">
     <span class="alert alert-danger text-center m-3 w-75">⚠️ si le nom de table existe déjà il sera remplacé par celui-ci en cas de validité!</span>
     <span class="card-title text-center w-50 alert alert-info"> Le nom de la base de données : <br><strong
-                name="db"><?php echo "<a href='/DMS/src/controller/DatabaseSelected.php?databasename=".$_GET["databasename"]."'><button type='button' class='w-25 btn btn-dark bg-success border-left-0 border-right-0 m-2' >".$_GET["databasename"]."</button></a>"; ?></strong></span>
+                name="db"><?php echo "<a href='/DMS/src/controller/DatabaseSelected.php?db=".$_GET["db"]."'><button type='button' class='w-25 btn btn-dark bg-success border-left-0 border-right-0 m-2' >".$_GET["db"]."</button></a>"; ?></strong></span>
     <?php
 
-    echo  "<input name='dbname' value=".$_GET["databasename"]. "  hidden>";
+    echo  "<input name='db' value=".$_GET["db"]. "  hidden>";
 
     ?>
     <fieldset class="m-1 alert alert-primary w-50">
@@ -33,14 +33,14 @@ if (!$_GET["databasename"]) {
         <input type="text"
         <?php
 
-            if (isset($_GET["tablename"]))
-                echo "value =\"".$_GET["tablename"]."\"";
+            if (isset($_GET["table"]))
+                echo "value =\"".$_GET["table"]."\"";
             else
                 echo "placeholder=\"Saisir le nom de table\"";
 
         ?>
         class=" form-control w-100 datafield" id="tableName"
-               name="tableName" required>
+               name="table" required>
     </fieldset>
     <table id="database" class=" p-3 table table-active alert alert-primary" style="margin: 0 29.9rem; border-radius: 1px">
         <thead>
