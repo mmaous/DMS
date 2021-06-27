@@ -6,7 +6,7 @@ if (!$_GET["db"]) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Creer Votre BD - DBGenie</title>
+    <title>Créer des tableaux - DMS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../../assets/images/favicon.png" rel="icon">
     <link href="../../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -14,7 +14,7 @@ if (!$_GET["db"]) {
 </head>
 <body class="bg-white">
 <div id="headerTitle" class="card-header text-center  mt-2 mb-5 pb-3">
-    <span class="text-white">Commencer par écrire le nom de la base de données</span>
+    <span class="text-white">n'hésitez pas à créer autant de tableaux que vous le souhaitez.</span>
     <a href="../../index.php">
         <button class="btn btn-outline-light btn-sm float-left">Home</button>
     </a>

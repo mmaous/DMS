@@ -8,7 +8,7 @@ require "src/controller/functions.php";
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Welcome - DBGenie</title>
+    <title>Bienvenue  - DMS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="assets/images/favicon.png" rel="icon" >
     <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">

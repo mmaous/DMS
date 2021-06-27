@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Creer Votre BD - DBGenie</title>
+    <title>Creer Votre BD - DMS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../../assets/images/favicon.png" rel="icon">
     <link href="../../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -11,19 +11,19 @@
 <div id="headerTitle" class="card-header text-center  mt-2 mb-5 pb-3">
     <span class="text-white">Commencer par écrire le nom de la base de données</span>
     <a href="../../index.php">
-        <button class="btn btn-outline-light btn-sm float-left">Home</button>
+        <button class="btn btn-outline-light btn-sm float-left">Accueil</button>
     </a>
 </div>
 <form class="form-inline text-white  mw-100"  method="get" id="DbnameForm" action="../controller/DbnameBuilder.php">
     <span class="alert alert-danger text-center w-50">⚠️ si le nom existe déjà il sera remplacé par celui-ci en cas de validité!</span>
     <div class="m-2 alert alert-info w-50">
-            <span class="text-center"><i>MySQL database naming restrictions:</i> </span>
-            <ul>
-                <li>Cannot be longer than 64 characters.</li>
-                <li>Cannot contain / \ or . characters.</li>
-                <li>Cannot contain characters that are not permitted in file names.</li>
-                <li>Cannot end with space characters.</li>
-            </ul>
+        <span class="text-center"><i>Restrictions de nommage des bases de données MySQL :</i> </span>
+        <ul>
+            <li>Ne peut pas dépasser 64 caractères.</li>
+            <li>Ne peut pas contenir / \ ou . caractères.</li>
+            <li>Ne peut pas contenir de caractères non autorisés dans les noms de fichiers.</li>
+            <li>Impossible de se terminer par des espaces.</li>
+        </ul>
     </div>
     <fieldset class="m-1 alert alert-primary  text-center  w-50">
         <label for="db" class="col-form-label text-dark">Nom de Base De Donneés</label>

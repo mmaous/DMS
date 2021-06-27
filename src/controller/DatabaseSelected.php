@@ -21,7 +21,7 @@ if (isset($_GET["insert"])){
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Name Your DB - DBGenie</title>
+    <title>Dase de données de Votre choix - DMS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../../assets/images/favicon.png" rel="icon">
     <link href="../../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -30,9 +30,9 @@ if (isset($_GET["insert"])){
 <body id="homepage" class="bg-white">
 
 <div id="headerTitle" class="card-header text-center mt-2 mb-2 pb-3">
-    <span class="text-white text-lg-center">YOUR DATABASE TABLES</span>
+    <span class="text-white text-lg-center">TABLEAUX DE BASE DE DONNÉES</span>
     <a href="../../index.php">
-        <button class="btn btn-outline-light btn-sm float-left">Home</button>
+        <button class="btn btn-outline-light btn-sm float-left">Accueil</button>
     </a>
 </div>
 <div class="text-center w-100">

@@ -8,7 +8,7 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"]) ) OR (empty($_GET["db"]) OR em
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Modifier une ligne</title>
+    <title>Modifier une ligne - DMS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../../assets/images/favicon.png" rel="icon">
     <link href="../../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -17,9 +17,9 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"]) ) OR (empty($_GET["db"]) OR em
 <body id="homepage" class="bg-white">
 
 <div id="headerTitle" class="card-header text-center mt-2 mb-2 pb-3">
-    <span class="text-white text-lg-center">YOUR DATABASE TABLES</span>
+    <span class="text-white text-lg-center text-capitalize">Manipulation de données</span>
     <a href="../../index.php">
-        <button class="btn btn-outline-light btn-sm float-left">Home</button>
+        <button class="btn btn-outline-light btn-sm float-left">Accueil</button>
     </a>
 </div>
 <div class="text-center w-100">
@@ -40,7 +40,7 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"]) ) OR (empty($_GET["db"]) OR em
     $db = $_GET["db"];
     //                    $db = "hotel_farah";
     echo '<a class="btn btn-info m-3 text-white btn-md" href="/DMS/src/controller/DatabaseSelected.php?db='.$db.'" style="background-color: rgba(31,44,71,0.84)">Retour a la listes des tableaux dans '.$db.'!</a>';
-    echo '<header class="card-header " style="font-size: 2rem">Modifier les Donnes !</header>';
+    echo '<header class="card-header " style="font-size: 2rem">Modifier les Donnees !</header>';
 
 
 

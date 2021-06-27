@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" >
 <head>
-    <title>Name Your DB - DBGenie</title>
+    <title>Vos bases de données - DMS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../../assets/images/favicon.png" rel="icon" >
     <link href="../../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -10,9 +10,9 @@
 <body class="bg-white">
 
 <div id="headerTitle" class="card-header text-center mt-2 mb-5 pb-3" >
-    <span class="text-white text-lg-center">YOUR DATABASE DATABASES</span>
+    <span class="text-white text-lg-center">Vos bases de données</span>
     <a href="../../index.php">
-        <button class="btn btn-outline-light btn-sm float-left">Home</button>
+        <button class="btn btn-outline-light btn-sm float-left">Accueil</button>
     </a>
 </div>
    <form class="form-inline align-items-center text-center" method="get" id="DbnameForm" action="../controller/DatabaseSelected.php" >

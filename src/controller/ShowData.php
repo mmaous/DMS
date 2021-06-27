@@ -14,7 +14,7 @@ if(isset($_GET["supprimer"]))
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Name Your DB - DBGenie</title>
+    <title>Affichage des données - DMS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../../assets/images/favicon.png" rel="icon">
     <link href="../../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -23,9 +23,9 @@ if(isset($_GET["supprimer"]))
 <body id="homepage" class="bg-white">
 
 <div id="headerTitle" class="card-header text-center mt-2 mb-5 pb-3">
-    <span class="text-white text-lg-center">Table data!</span>
+    <span class="text-white text-lg-center text-capitalize">Données du tableau</span>
     <a href="../../index.php">
-        <button class="btn btn-outline-light btn-sm float-left">Home</button>
+        <button class="btn btn-outline-light btn-sm float-left">Accueil</button>
     </a>
 </div>
                 <?php

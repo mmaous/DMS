@@ -7,7 +7,7 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"])) OR (empty($_GET["db"]) OR emp
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Name Your DB - DBGenie</title>
+    <title>Saisir les Donnees - DMS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../../assets/images/favicon.png" rel="icon">
     <link href="../../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -16,7 +16,7 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"])) OR (empty($_GET["db"]) OR emp
 <body id="homepage" class="bg-white">
 
 <div id="headerTitle" class="card-header text-center mt-2 mb-2 pb-3">
-    <span class="text-white text-lg-center">YOUR DATABASE TABLES</span>
+    <span class="text-white text-lg-center">Saisir les les données</span>
     <a href="../../index.php">
         <button class="btn btn-outline-light btn-sm float-left">Home</button>
     </a>
@@ -57,13 +57,13 @@ if((!isset($_GET["table"]) OR !isset($_GET["db"])) OR (empty($_GET["db"]) OR emp
                 while($field = $fields->fetch_assoc()){
                     if ($field["Field"] !=="id") {
                         if (strpos($field["Type"], 'tinyint(1)') !== false) {
-                            echo "<label for='".$field["Field"]."'>".$field["Field"]."</label><br>";
+                            echo "<label class='alert alert-info w-50' for='".$field["Field"]."'>".$field["Field"]."</label><br>";
                             echo "<select class='form-select custom-select bg-white  w-50 datafield' name=".$field["Field"]."><option value='1'>true</option><option value='0'>false</option> </select>";
                         }elseif((strpos($field["Type"], "text") !== false) or (strpos($field["Type"], "varchar") !== false) ){
-                            echo "<label for='".$field["Field"]."'>".$field["Field"]."</label>";
+                            echo "<label  class='alert alert-info w-50' for='".$field["Field"]."'>".$field["Field"]."</label>";
                             echo "<input id='".$field["Field"]."' class='form-control datafield w-50' name='".$field["Field"]."' value='NULL' type='text' required>";
                         }elseif(strpos($field["Type"], "int") !== false) {
-                            echo "<label for='" . $field["Field"] . "'>" . $field["Field"] . "</label>";
+                            echo "<label  class='alert alert-info w-50' for='" . $field["Field"] . "'>" . $field["Field"] . "</label>";
                             echo '<input id="' . $field["Field"] . '" class="form-control datafield w-50" name="' . $field["Field"] . '" value="NULL" type="number" required>';
                         }
 //                       ******************************* for date check **********************
