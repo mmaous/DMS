@@ -5,8 +5,3 @@ _le code source principal est en "/src" , dossier "/assets" sont juste pour rend
 
 `Developped by: MHAND MAOUS
 `
-
- **FOR: WebDyn miniProjet** 
-
-_Evaluate by : Pr. Mourad ENNAJI_
-
